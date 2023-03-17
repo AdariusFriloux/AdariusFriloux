@@ -6,6 +6,8 @@
 	<script src="jquery.min.js"></script>
 	<style>
 		.box {
+
+	
 			width: 70px;
 			height: 70px;
 			background-color: teal;
@@ -19,15 +21,24 @@
 		}
 		.board{
 			height: 100vh;
+
 		}
+
+		body {
+    background: rgb(47, 43, 42);
+    color: rgb(45, 45, 45);
+
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
-
+	
+	<div class="background">
+            <img class="background-img"
+              src=https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/2220px-FullMoon2010.jpg>
+          </div>
 </head>
 <body class="board">
 	<!-- HTML for the box -->
 	<div class="box">?</div>
-
 	<script>
 		(function(){
 			'use strict'
@@ -48,13 +59,15 @@
 			box.on('click', handleBoxClick);
 
 			// moves the Box to a new position on the screen along the X-Axis
-			function moveBoxTo(newPositionX) {
+			function moveBoxTo(newPositionX, newPositionY) {
 				box.css("left", newPositionX);
+				box.css('top', newPositionY);
 			}
 
 			// changes the text displayed on the Box
 			function changeBoxText(newText) {
 				box.text(newText);
+				
 			}
 
 			//////////////////////////////////////////////////////////////////
@@ -63,6 +76,27 @@
 			
 			// TODO 2 - Variable declarations 
 			
+			var positionx = 0 
+            
+			var points = 0
+
+			var speedX = 0 
+
+			var positionY
+
+			var speedY 
+
+			var boardHeight = jQuery(window).height(); 
+
+			var randNum = Math.random() * 100;
+
+			var colorStr = "rgb(50, 25, 250)";
+box.css('background-color', colorStr);
+
+			speedX = -speedX
+
+			speedY = -speedY
+
 
 			
 			/* 
@@ -70,18 +104,61 @@
 			it should move the Box to a new location. If the box drifts off the screen
 			turn it around! 
 			*/
-			function update() {
-				
+			function update() {        
+			  /* Your Code to Increase positionX by 10 HERE*/
+			  positionx = positionx + speedX;
+			  positionY = positionY + speedY
+			moveBoxTo(positionx,positionY)
+			if(positionx > boardWidth){
+			speedX = -10
+			}
+           else if(positionx < 0) { 
+			speedX = 10
+			}
+            
+			if(positionY > boardHeight){
+			speedY = -10
+			}
+           else if(positionY < 0) { 
+			speedY = 10
+			}
 
 			};
-
+            
+		
 			/* 
 			This Function will be called each time the box is clicked. Each time it is called,
 			it should increase the points total, increase the speed, and move the box to
 			the left side of the screen.
 			*/
 			function handleBoxClick() {
-				
+			positionx = 0;
+			positionY = 0;
+		    points = points + 1
+			changeBoxText(points);	
+            
+			if(speedX = 50) {
+			speedX = 3
+			}
+
+			else if(speedX = -50) {
+				speedX = -3
+			}
+	
+			speedX = points + 3
+			
+            
+		    if(speedY = 50) {
+			speedY = 3
+			}
+
+			else if(speedY = -50) {
+				speedY = -3
+			}
+	
+			speedY = points + 3
+			
+			
 
 
 			};

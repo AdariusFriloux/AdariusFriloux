@@ -28,7 +28,7 @@ var init = function (window) {
 
         function drawCircle() {
             circle = draw.randomCircleInArea(canvas, true, true, "#999", 2);
-            physikz.addRandomVelocity(circle,canvas, 10, 10);
+            physikz.addRandomVelocity(circle, canvas, 10, 10);
             view.addChild(circle);
             circle.push(circle);
 
@@ -68,7 +68,7 @@ var init = function (window) {
 
 
 
-            
+
 
             // TODO 9 : Iterate over the array
 
@@ -84,9 +84,7 @@ var init = function (window) {
         game.checkCirclePosition = function (circle) {
 
             // if the circle has gone past the RIGHT side of the screen then place it on the LEFT
-            if (circle.x > canvas.width) {
-                circle.x = 0;
-            }
+
 
 
 
@@ -94,43 +92,43 @@ var init = function (window) {
 
             if (circle.x > canvas.width) {
 
-                circle.x = 0 
-             }
-             if (circle.x < canvas.width) {
+                circle.x = 0
+            }
+            if (circle.x < 0) {
 
-                circle.x = 0 
-             }
+                circle.x = canvas.width
+            }
             // YOUR TODO 6 CODE ENDS HERE //////////////////////////
 
             if (circle.y > canvas.height) {
 
-                circle.y = 0 
+                circle.y = 0
             }
-                if (circle.y < canvas.height) {
+            if (circle.y < 0) {
 
-                    circle.y = 0 
-                }
+                circle.y = canvas.height
+            }
+        }
+            /////////////////////////////////////////////////////////////
+            // --- NO CODE BELOW HERE  --- DO NOT REMOVE THIS CODE --- //
+            /////////////////////////////////////////////////////////////
 
-        /////////////////////////////////////////////////////////////
-        // --- NO CODE BELOW HERE  --- DO NOT REMOVE THIS CODE --- //
-        /////////////////////////////////////////////////////////////
+            view.addChild(fps);
+            app.addUpdateable(fps);
 
-        view.addChild(fps);
-        app.addUpdateable(fps);
+            game.circle = circle;
+            game.circles = circles;
+            game.drawCircle = drawCircle;
+            game.update = update;
 
-        game.circle = circle;
-        game.circles = circles;
-        game.drawCircle = drawCircle;
-        game.update = update;
+            app.addUpdateable(window.opspark.game);
+        }
+    };
 
-        app.addUpdateable(window.opspark.game);
+    // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
+    if ((typeof process !== 'undefined') &&
+        (typeof process.versions.node !== 'undefined')) {
+        // here, export any references you need for tests //
+        module.exports = init;
+
     }
-};
-
-// DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
-if ((typeof process !== 'undefined') &&
-    (typeof process.versions.node !== 'undefined')) {
-    // here, export any references you need for tests //
-    module.exports = init;
-
-}

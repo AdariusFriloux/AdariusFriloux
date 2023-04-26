@@ -30,7 +30,7 @@ var init = function (window) {
             circle = draw.randomCircleInArea(canvas, true, true, "#999", 2);
             physikz.addRandomVelocity(circle, canvas, 10, 10);
             view.addChild(circle);
-            circle.push(circle);
+            circles.push(circle);
 
         }
 
@@ -38,11 +38,12 @@ var init = function (window) {
 
 
         for (var i = 0; i < 100; i++) {
-            drawCircle();
+            drawCircle(); 
 
         }
 
-
+        
+        
 
         ////////////////////////////////////////////////////////////
         ///////////////// PROGRAM LOGIC ////////////////////////////
@@ -58,9 +59,9 @@ var init = function (window) {
 
 
             for (var i = 0; i < circles.length; i++) {
-                physikz.updatePosition(circle[i]);
+                physikz.updatePosition(circles[i]);
 
-                game.checkCirclePosition(circle[i]);
+                game.checkCirclePosition(circles[i]);
             }
 
 
@@ -81,7 +82,7 @@ var init = function (window) {
         Function. If that circle drifts off the screen, this Function should move
         it to the opposite side of the screen.
         */
-        game.checkCirclePosition = function (circle) {
+        game.checkCirclePosition = function (circles) {
 
             // if the circle has gone past the RIGHT side of the screen then place it on the LEFT
 

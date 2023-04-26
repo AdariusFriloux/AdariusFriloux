@@ -82,7 +82,7 @@ var init = function (window) {
         Function. If that circle drifts off the screen, this Function should move
         it to the opposite side of the screen.
         */
-        game.checkCirclePosition = function (circles) {
+        game.checkCirclePosition = function (circle) {
 
             // if the circle has gone past the RIGHT side of the screen then place it on the LEFT
 
